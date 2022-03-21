@@ -1,0 +1,7 @@
+{
+    "name": "Add To Queue Button",
+    "version": "1.0.0",
+    "description": "Adds a add to queue button to the spotify activity section",
+    "author": "Aria",
+    "license": "MIT"
+}
