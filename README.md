@@ -5,3 +5,6 @@ powercord plugin that adds a button to spotify section
 
 
 ![well](https://i.imgur.com/pjy6tJQ.png)
+
+
+![hehhe](https://i.imgur.com/CCGmVYD.png)
