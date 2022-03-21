@@ -5,40 +5,14 @@ const { icon } = getModule(["icon", "isHeader"], false);
 const Tooltip = getModuleByDisplayName("Tooltip", false);
 const { SPOTIFY_PLAYER_URL } = require("../../pc-spotify/constants");
 
-function notify(content, success = true) {
-    powercord.api.notices.sendToast(`bru-momentum`, {
-        type: "info",
-        header: "Add To Queue",
-        content,
-        buttons: [
-            {
-                text: "Dismiss",
-                color: success ? "green" : "red",
-                look: "outlined",
-                onClick: () => powercord.api.notices.closeToast("bru-momentum"),
-            },
-        ],
-        timeout: 3e3,
-    });
-}
-const AddToQueueButton = ({ listenAlong, SpotifyAPI }) => {
+const AddToQueueButton = ({ listenAlong, addToQueue }) => {
     return (
         <div style={{ display: "flex", gap: "8px" }}>
             <Tooltip color="black" position="top" text="Add To Queue">
                 {({ onMouseLeave, onMouseEnter }) => (
                     <button
                         className={`${listenAlong.props.className} ${listenAlong.props.size} ${listenAlong.props.look} ${listenAlong.props.color}`}
-                        onClick={() =>
-                            SpotifyAPI.genericRequest(
-                                post(`${SPOTIFY_PLAYER_URL}/queue`).query("uri", `spotify:track:${listenAlong.props.activity.sync_id}`),
-                                true
-                            )
-                                .then(() => notify(`Queued`))
-                                .catch((err) => {
-                                    console.error("[QUEUE-SPOTIFY]", err);
-                                    notify("AYE is yo spotify on?", false);
-                                })
-                        }
+                        onClick={() => addToQueue(listenAlong.props.activity.sync_id)}
                         onMouseEnter={onMouseEnter}
                         onMouseLeave={onMouseLeave}
                     >
