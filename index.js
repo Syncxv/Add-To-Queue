@@ -15,7 +15,7 @@ class AddToQueuePlugin extends Plugin {
     patchUserPopout() {
         const SpotifyActivitySyncButton = getModule((m) => m?.default?.displayName === "SpotifyActivitySyncButton", false);
         inject("add-to-queue", SpotifyActivitySyncButton, "default", (_, res) =>
-            AddToQueueButton({ listenAlong: res, addToQueue: this.addToQueue.bind(this) })
+            res === null ? null : AddToQueueButton({ listenAlong: res, addToQueue: this.addToQueue.bind(this) })
         );
     }
     patchFriendsSection() {
